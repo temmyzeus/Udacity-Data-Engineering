@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: students-postgres-db
+    ports:
+      - '5550:5432'
+    volumes:
+      - './postgres-db:/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DATABASE}
+    networks:
+      - etl-network
+    restart: always
+
+  etl-pipeline:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: students-python-data-modelling
+    volumes:
+      - .:/modelling
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=postgres
+    depends_on:
+      - postgres
+    networks:
+      - etl-network
+    entrypoint: ['python', 'etl.py']
+
+volumes:
+  postgres-db:
+    driver: local
+
+networks:
+  etl-network:
+    driver: bridge
