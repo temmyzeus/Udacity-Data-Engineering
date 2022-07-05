@@ -31,7 +31,7 @@ services:
       - postgres
     networks:
       - etl-network
-    entrypoint: ['python', 'etl.py']
+    entrypoint: ['python', 'src/etl.py']
 
 volumes:
   postgres-db:
