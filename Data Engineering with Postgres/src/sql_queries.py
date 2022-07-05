@@ -1,8 +1,14 @@
 """This module contains queries to be run in the database."""
 
+import config
+
+drop_database_query: str = f"DROP DATABASE IF EXISTS {config.DATABASE}"
+create_database_query: str = f"CREATE DATABASE {config.DATABASE}"
+drop_any_table: str = "DROP TABLE IF EXISTS {table_name}"
+
 create_songs_query: str = """
-CREATE TABLE IF NOT EXISTS Songs (
-	song_id SERIAL,
+CREATE TABLE songs (
+	song_id SERIAL NOT NULL UNIQUE,
 	artiste_id INT NOT NULL,
 	song_title VARCHAR(50),
 	duration FLOAT,
@@ -12,7 +18,7 @@ CREATE TABLE IF NOT EXISTS Songs (
 """
 
 create_artiste_query: str = """
-CREATE TABLE IF NOT EXISTS Artistes (
+CREATE TABLE artistes (
 	artiste_id SERIAL,
 	name VARCHAR(50),
 	location VARCHAR(50),
@@ -23,7 +29,7 @@ CREATE TABLE IF NOT EXISTS Artistes (
 """
 
 create_users_query: str = """
-CREATE TABLE IF NOT EXISTS Users (
+CREATE TABLE users (
 	user_id SERIAL,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
@@ -34,7 +40,7 @@ CREATE TABLE IF NOT EXISTS Users (
 """
 
 create_songplays_query: str = """
-CREATE TABLE IF NOT EXISTS Song_Plays (
+CREATE TABLE songplays (
 	song_play_id SERIAL NOT NULL,
 	artiste_id INT,
 	song_id INT,
