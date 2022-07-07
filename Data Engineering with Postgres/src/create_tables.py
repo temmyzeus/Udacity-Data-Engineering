@@ -84,6 +84,8 @@ def main():
 	drop_tables(cursor)
 	create_tables(cursor)
 
+	cursor.close()
+	conn.close()
 
 if __name__ == "__main__":
 	main()
