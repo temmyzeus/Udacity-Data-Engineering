@@ -29,7 +29,7 @@ def create_database(cursor):
 		print("Error creating database: {}".format(e))
 
 def drop_tables(cursor):
-	table_names: list[str] = ["songs", "artistes", "users", "songplays"]
+	table_names: list[str] = ["songs", "artistes", "users", "songplays", "time"]
 	for table_name in table_names:
 		try:
 			cursor.execute(drop_any_table.format(table_name=table_name))
