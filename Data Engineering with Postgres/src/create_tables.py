@@ -39,13 +39,13 @@ def drop_tables(cursor):
 
 def create_tables(cursor):
 	try:
-		cursor.execute(create_songs_query)
+		cursor.execute(create_artiste_query)
 		print("Table created")
 	except psycopg2.Error as e:
 		print("Error creating Table: {}".format(e))
-
+	
 	try:
-		cursor.execute(create_artiste_query)
+		cursor.execute(create_songs_query)
 		print("Table created")
 	except psycopg2.Error as e:
 		print("Error creating Table: {}".format(e))
@@ -56,6 +56,7 @@ def create_tables(cursor):
 	except psycopg2.Error as e:
 		print("Error creating Table: {}".format(e))
 
+	# create time relation
 	# Create songplays relation
 
 def main():
