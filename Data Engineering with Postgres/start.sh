@@ -1,0 +1,1 @@
+python3 src/create_tables.py && python3 src/etl.py
