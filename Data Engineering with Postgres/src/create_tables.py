@@ -68,7 +68,7 @@ def main():
 				user=config.DATABASE_USER,
 				password=config.DATABASE_PASSWORD,
 				host=config.DATABASE_HOST,
-				port=5550
+				port=config.DATABASE_PORT
 			)
 			print("Database connection successful")
 			break
