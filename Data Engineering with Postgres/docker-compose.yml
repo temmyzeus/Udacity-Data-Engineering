@@ -3,7 +3,7 @@ version: '3'
 services:
   postgres:
     image: postgres:latest
-    container_name: students-postgres-db
+    container_name: sparkify-postgres-db
     ports:
       - '5550:5432'
     volumes:
@@ -20,7 +20,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: students-python-data-modelling
+    container_name: sparkify-python-data-modelling
     volumes:
       - .:/modelling
     env_file:
